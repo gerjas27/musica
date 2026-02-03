@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Baby Shower</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pangolin&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: transparent; /* Permite que se adapte al fondo si Canva lo permite */
+            font-family: 'Montserrat', sans-serif;
+        }
+        .timer-container {
+            display: flex;
+            gap: 15px;
+            text-align: center;
+        }
+        .unit {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            min-width: 70px;
+        }
+        .number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #7d5a44;
+            line-height: 1;
+        }
+        .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a68b77;
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="timer-container">
+        <div class="unit">
+            <span id="days" class="number">00</span>
+            <span class="label">Días</span>
+        </div>
+        <div class="unit">
+            <span id="hours" class="number">00</span>
+            <span class="label">Hrs</span>
+        </div>
+        <div class="unit">
+            <span id="minutes" class="number">00</span>
+            <span class="label">Min</span>
+        </div>
+        <div class="unit">
+            <span id="seconds" class="number">00</span>
+            <span class="label">Seg</span>
+        </div>
+    </div>
+
+    <script>
+        // Configura aquí la fecha de tu evento
+        const targetDate = new Date("March 7, 2026 16:30:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.querySelector('.timer-container').innerHTML = "<h1 style='color:#7d5a44; font-weight:bold;'>¡Llegó el día!</h1>";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d < 10 ? '0'+d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0'+m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0'+s : s;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
