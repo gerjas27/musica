@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuenta regresiva</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent; /* sin fondo */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .contador {
+      color: #8B5A2B; /* marrón medio */
+      text-align: center;
+    }
+
+    .tiempo {
+      font-size: 3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .etiquetas {
+      font-size: 1rem;
+      margin-top: 5px;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contador">
+    <div class="tiempo" id="countdown">Cargando...</div>
+    <div class="etiquetas">DÍAS · HORAS · MINUTOS · SEGUNDOS</div>
+  </div>
+
+  <script>
+    const fechaObjetivo = new Date("2026-02-27T18:00:00").getTime();
+
+    function actualizarCuenta() {
+      const ahora = new Date().getTime();
+      const diferencia = fechaObjetivo - ahora;
+
+      if (diferencia <= 0) {
+        document.getElementById("countdown").innerHTML = "¡YA!";
+        return;
+      }
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferencia / 1000) % 60);
+
+      document.getElementById("countdown").innerHTML =
+        `${dias} : ${horas.toString().padStart(2, "0")} : ${minutos.toString().padStart(2, "0")} : ${segundos.toString().padStart(2, "0")}`;
+    }
+
+    actualizarCuenta();
+    setInterval(actualizarCuenta, 1000);
+  </script>
+
+</body>
+</html>
