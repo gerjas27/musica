@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título de la pestaña -->
+    <title>Mi Contenido Exclusivo</title>
+
+    <!-- CONFIGURACIÓN PARA WHATSAPP Y REDES (Open Graph) -->
+    <!-- El título que aparecerá en la tarjeta de WhatsApp -->
+    <meta property="og:title" content="¡Echa un vistazo a esto!">
+    
+    <!-- La descripción que aparecerá debajo del título -->
+    <meta property="og:description" content="Haz clic para ver el contenido completo de mi nueva publicación.">
+    
+    <!-- LA IMAGEN DESTACADA (Tu enlace de GitHub con raw=true) -->
+    <meta property="og:image" content="https://github.com/gerjas27/musica/blob/8e3ff4150fc6984701371ee468a9f1adc22a3a5b/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(13).webp?raw=true">
+    
+    <!-- Especificar dimensiones ayuda a que la previsualización cargue más rápido -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    
+    <!-- CONFIGURACIÓN PARA TWITTER/X (Forzar imagen grande) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mi Contenido Exclusivo">
+    <meta name="twitter:description" content="Haz clic para ver el contenido completo.">
+    <meta name="twitter:image" content="https://github.com/gerjas27/musica/blob/8e3ff4150fc6984701371ee468a9f1adc22a3a5b/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(13).webp?raw=true">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-md w-full bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-gray-700 transition-transform hover:scale-[1.02]">
+        <!-- Imagen en la página -->
+        <div class="relative h-64 overflow-hidden">
+            <img 
+                src="https://github.com/gerjas27/musica/blob/8e3ff4150fc6984701371ee468a9f1adc22a3a5b/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(13).webp?raw=true" 
+                alt="Imagen destacada" 
+                class="w-full h-full object-cover"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+        </div>
+
+        <!-- Contenido de la tarjeta -->
+        <div class="p-8">
+            <span class="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-blue-400 uppercase bg-blue-400/10 rounded-full mb-4">
+                Nuevo Lanzamiento
+            </span>
+            <h1 class="text-3xl font-bold mb-4 leading-tight">
+                Disfruta de la mejor experiencia visual
+            </h1>
+            <p class="text-gray-400 mb-8 leading-relaxed">
+                Esta página ha sido configurada para que tu imagen se vea increíble al compartirla por mensajes de texto y redes sociales.
+            </p>
+
+            <div class="flex flex-col gap-3">
+                <button class="w-full py-4 bg-white text-gray-900 font-bold rounded-xl hover:bg-gray-200 transition-colors">
+                    Ver más detalles
+                </button>
+                <button 
+                    onclick="copyLink()"
+                    class="w-full py-4 bg-gray-700 text-white font-medium rounded-xl hover:bg-gray-600 transition-colors flex items-center justify-center gap-2"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    Copiar Enlace
+                </button>
+            </div>
+            
+            <!-- Mensaje de confirmación (oculto por defecto) -->
+            <p id="copy-msg" class="text-center text-sm text-green-400 mt-4 opacity-0 transition-opacity">¡Enlace copiado!</p>
+        </div>
+    </div>
+
+    <script>
+        function copyLink() {
+            const url = window.location.href;
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = url;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            
+            const msg = document.getElementById('copy-msg');
+            msg.classList.remove('opacity-0');
+            setTimeout(() => msg.classList.add('opacity-0'), 2000);
+        }
+    </script>
+
+</body>
+</html>
